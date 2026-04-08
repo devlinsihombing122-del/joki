@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pascal Guru - Seller Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="header-left">
+                <h1>Pascal Guru</h1>
+                <p>Dashboard Penjual</p>
+            </div>
+            <div class="header-right">
+                <div class="notification-bell">
+                    <span class="bell-icon">🔔</span>
+                    <span class="notif-count" id="notif-count">0</span>
+                </div>
+                <button id="logout-btn" class="btn-logout">Keluar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="seller-sidebar">
+            <nav>
+                <a href="#" class="nav-item active" data-section="orders">
+                    <span>📋</span> Pesanan
+                </a>
+                <a href="#" class="nav-item" data-section="profile">
+                    <span>👤</span> Profil
+                </a>
+                <a href="#" class="nav-item" data-section="earnings">
+                    <span>💰</span> Penghasilan
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="seller-main">
+            <!-- Orders Section -->
+            <section id="orders-section" class="seller-section active">
+                <h2>Pesanan Masuk</h2>
+                <div id="orders-list" class="orders-list"></div>
+            </section>
+
+            <!-- Order Detail Modal -->
+            <div id="order-modal" class="modal">
+                <div class="modal-content order-modal">
+                    <span class="close">&times;</span>
+                    
+                    <div class="modal-header">
+                        <h3>Detail Pesanan</h3>
+                        <span id="modal-order-id" class="order-id"></span>
+                    </div>
+
+                    <div class="customer-info">
+                        <h4>Informasi Pembeli</h4>
+                        <p><strong>Nama:</strong> <span id="modal-customer-name"></span></p>
+                        <p><strong>Email:</strong> <span id="modal-customer-email"></span></p>
+                    </div>
+
+                    <div class="order-details">
+                        <h4>Detail Pesanan</h4>
+                        <p><strong>Jenis Jasa:</strong> <span id="modal-service-type"></span></p>
+                        <p><strong>Deskripsi:</strong> <span id="modal-service-desc"></span></p>
+                        <p><strong>Durasi:</strong> <span id="modal-service-duration"></span></p>
+                        <p><strong>Nominal:</strong> <span id="modal-service-price"></span></p>
+                    </div>
+
+                    <div class="payment-info">
+                        <h4>Status Pembayaran</h4>
+                        <p><strong>Status:</strong> <span id="modal-payment-status"></span></p>
+                        <p><strong>Bukti Pembayaran:</strong></p>
+                        <img id="modal-payment-proof" src="" alt="Bukti Pembayaran" style="max-width: 200px; border-radius: 8px;">
+                    </div>
+
+                    <div class="status-management">
+                        <h4>Kelola Status Pekerjaan</h4>
+                        <div class="status-buttons">
+                            <button class="btn-status" data-status="checking">1. Pengecekan</button>
+                            <button class="btn-status" data-status="queued">2. Antrian</button>
+                            <button class="btn-status" data-status="working">3. Dikerjakan</button>
+                            <button class="btn-status" data-status="completed">4. Siap Selesai</button>
+                        </div>
+                        
+                        <div id="queue-info" style="display: none; margin-top: 1rem;">
+                            <label>Nomor Antrian:</label>
+                            <input type="number" id="queue-number" min="1" placeholder="Masukkan nomor antrian">
+                        </div>
+
+                        <div id="completion-info" style="display: none; margin-top: 1rem;">
+                            <label>Upload Hasil Pekerjaan:</label>
+                            <input type="file" id="work-result-file" accept="image/*,.pdf,.doc,.docx">
+                            <button class="btn-primary" onclick="uploadWorkResult()">Upload Hasil</button>
+                        </div>
+                    </div>
+
+                    <div class="chat-section">
+                        <h4>Chat dengan Pembeli</h4>
+                        <div id="modal-chat-messages" class="chat-messages"></div>
+                        <div class="chat-input-group">
+                            <input type="text" id="modal-chat-input" placeholder="Ketik pesan...">
+                            <button class="btn-secondary" onclick="sendSellerMessage()">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="seller-section">
+                <h2>Profil Penjual</h2>
+                <div class="profile-card">
+                    <div class="profile-photo">
+                        <div id="profile-img-placeholder">📸</div>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">Foto akan di-upload kemudian</p>
+                    </div>
+                    <div class="profile-info">
+                        <h3>Pascal</h3>
+                        <p><strong>Nomor Telepon:</strong> 62 851-5688-4937</p>
+                        <p><strong>Email:</strong> pascal.consulting@premium.edu</p>
+                        <div style="margin-top: 1.5rem;">
+                            <h4>Tentang</h4>
+                            <textarea id="about-text" rows="5" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ddd;">Konsultan akademik profesional dengan pengalaman lebih dari 10 tahun. Spesialisasi dalam penulisan akademik, thesis, dan panduan studi.</textarea>
+                            <button class="btn-primary" style="margin-top: 1rem;" onclick="updateAbout()">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Earnings Section -->
+            <section id="earnings-section" class="seller-section">
+                <h2>Penghasilan</h2>
+                <div class="earnings-summary">
+                    <div class="earning-card">
+                        <h4>Total Penghasilan</h4>
+                        <p class="amount" id="total-earnings">Rp 0</p>
+                    </div>
+                    <div class="earning-card">
+                        <h4>Pesanan Selesai</h4>
+                        <p class="amount" id="completed-orders">0</p>
+                    </div>
+                    <div class="earning-card">
+                        <h4>Rating</h4>
+                        <p class="amount">⭐ 4.9</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="seller-dashboard.js"></script>
+</body>
+</html>

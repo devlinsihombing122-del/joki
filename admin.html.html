@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pascal Guru - Seller Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo">
+                <h1>Pascal Guru</h1>
+                <p>Platform Jasa Akademik Premium</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="password">Password Penjual</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Masukkan password" 
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <button type="submit" class="btn-login">Masuk ke Dashboard</button>
+            </form>
+
+            <div id="error-message" class="error-message"></div>
+            
+            <div class="security-info">
+                <h4>Keamanan Tinggi</h4>
+                <ul>
+                    <li>✓ Password terenkripsi dengan algoritma hash</li>
+                    <li>✓ Rate limiting: Maksimal 5 percobaan login</li>
+                    <li>✓ Lockout otomatis 15 menit setelah gagal</li>
+                    <li>✓ Session protection & CSRF token</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="security-login.js"></script>
+</body>
+</html>

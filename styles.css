@@ -1,4 +1,3 @@
-/* Copy of seller styles.css untuk buyer */
 /* Reset & Base */
 * {
     margin: 0;
@@ -17,6 +16,46 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* SELLER LOGIN PAGE */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-card .logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-card h1 {
+    font-size: 2rem;
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+}
+
+.login-card .logo p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.login-form {
+    margin-bottom: 2rem;
 }
 
 .form-group {
@@ -50,11 +89,11 @@ body {
     background: rgba(96, 165, 250, 0.1);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
+.form-group input::placeholder {
     color: #94a3b8;
 }
 
+.btn-login,
 .btn-primary,
 .btn-secondary {
     padding: 0.8rem 1.5rem;
@@ -94,11 +133,21 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    display: inline-block;
 }
 
 .btn-logout:hover {
     background: #ef4444;
+}
+
+.btn-login {
+    width: 100%;
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    color: white;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(96, 165, 250, 0.4);
 }
 
 .btn-cta {
@@ -137,7 +186,393 @@ body {
     display: none;
 }
 
-/* BUYER HEADER */
+.security-info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid #3b82f6;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.security-info h4 {
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+}
+
+.security-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.security-info li {
+    color: #cbd5e1;
+    margin-bottom: 0.5rem;
+}
+
+/* SELLER HEADER & LAYOUT */
+.seller-header {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.seller-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.seller-header h1 {
+    color: #60a5fa;
+    font-size: 1.5rem;
+}
+
+.seller-header .header-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.notification-bell {
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.notif-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #f87171;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.seller-sidebar {
+    position: fixed;
+    width: 200px;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 2rem 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    height: calc(100vh - 60px);
+    left: 0;
+    top: 60px;
+    z-index: 50;
+}
+
+.seller-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #cbd5e1;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(96, 165, 250, 0.2);
+    color: #60a5fa;
+}
+
+.seller-main {
+    margin-left: 200px;
+    padding: 2rem;
+    min-height: calc(100vh - 60px);
+}
+
+.seller-section {
+    display: none;
+}
+
+.seller-section.active {
+    display: block;
+}
+
+.seller-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #e2e8f0;
+}
+
+.orders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.order-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-card:hover {
+    border-color: rgba(96, 165, 250, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.order-card-body {
+    padding: 1rem;
+}
+
+.order-card-body p {
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+}
+
+.order-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(96, 165, 250, 0.05);
+}
+
+.order-id {
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.price {
+    font-weight: bold;
+    color: #60a5fa;
+    font-size: 1.1rem;
+}
+
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-checking { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+.status-queued { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.status-working { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
+.status-completed { background: rgba(74, 222, 128, 0.2); color: #86efac; }
+
+.payment-status {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.payment-status.verified {
+    background: rgba(74, 222, 128, 0.2);
+    color: #86efac;
+}
+
+.payment-status.pending {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(15px);
+    margin: 2% auto;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    color: #cbd5e1;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f87171;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: #e2e8f0;
+}
+
+.detail-header,
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h4 {
+    color: #60a5fa;
+    margin-bottom: 1rem;
+}
+
+.detail-section p {
+    color: #cbd5e1;
+    margin-bottom: 0.5rem;
+}
+
+.customer-info,
+.order-details,
+.payment-info {
+    background: rgba(96, 165, 250, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #60a5fa;
+    margin-bottom: 1.5rem;
+}
+
+.status-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.btn-status {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-status:hover,
+.btn-status.active {
+    background: rgba(96, 165, 250, 0.2);
+    border-color: #60a5fa;
+    color: #60a5fa;
+}
+
+/* PROFILE */
+.profile-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.profile-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile-img-placeholder {
+    font-size: 4rem;
+    background: rgba(96, 165, 250, 0.1);
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(96, 165, 250, 0.3);
+}
+
+.profile-info h3 {
+    color: #60a5fa;
+    margin-bottom: 1rem;
+}
+
+.profile-info h4 {
+    color: #e2e8f0;
+    margin-top: 1rem;
+}
+
+.profile-info p {
+    color: #cbd5e1;
+    margin-bottom: 0.5rem;
+}
+
+/* EARNINGS */
+.earnings-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.earning-card {
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.earning-card h4 {
+    color: #cbd5e1;
+    margin-bottom: 0.5rem;
+}
+
+.earning-card .amount {
+    font-size: 1.5rem;
+    color: #60a5fa;
+    font-weight: bold;
+}
+
+/* BUYER PAGE */
 .buyer-header {
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(10px);
@@ -154,8 +589,8 @@ body {
     align-items: center;
 }
 
-.buyer-header .logo h1 {
-    color: #60a5fa;
+.buyer-header .logo h1,
+.seller-header h1 {
     font-size: 1.5rem;
 }
 
@@ -167,7 +602,6 @@ body {
 
 .header-nav a {
     text-decoration: none;
-    color: inherit;
 }
 
 /* HERO */
@@ -316,45 +750,8 @@ body {
     margin-top: 0.5rem;
 }
 
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    overflow-y: auto;
-}
-
-.modal-content {
-    background: rgba(30, 41, 59, 0.95);
-    backdrop-filter: blur(15px);
-    margin: 2% auto;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    width: 90%;
-    max-width: 700px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-.close {
-    color: #cbd5e1;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: #f87171;
-}
-
 /* AUTH MODAL */
-.auth-modal{
+.auth-modal {
     max-width: 500px;
 }
 
@@ -395,24 +792,22 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ORDER FORM MODAL */
-.order-form-modal {
+/* ORDER MODAL */
+.order-form-modal,
+.order-modal,
+.order-detail-modal {
     max-width: 600px;
 }
 
-.order-form-modal h3 {
-    color: #e2e8f0;
-    margin-bottom: 1.5rem;
-}
-
-/* PAYMENT MODAL */
-.payment-modal {
-    max-width: 500px;
-}
-
+.order-form-modal h3,
 .payment-modal h3 {
     color: #e2e8f0;
     margin-bottom: 1.5rem;
+}
+
+/*PAYMENT MODAL */
+.payment-modal {
+    max-width: 500px;
 }
 
 .payment-details {
@@ -428,47 +823,76 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* ORDER DETAIL MODAL */
-.order-detail-modal {
-    max-width: 700px;
+/* CHAT */
+.chat-section {
+    margin-top: 2rem;
 }
 
-.detail-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.detail-header h3 {
+.chat-section h4 {
     color: #e2e8f0;
-}
-
-.detail-section {
-    margin-bottom: 1.5rem;
-}
-
-.detail-section h4 {
-    color: #60a5fa;
     margin-bottom: 1rem;
 }
 
-.detail-section p {
-    color: #cbd5e1;
-    margin-bottom: 0.5rem;
+.chat-messages {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* BUYER ORDERS LIST */
+.chat-message {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.chat-message.seller {
+    background: rgba(96, 165, 250, 0.2);
+    border-left: 3px solid #60a5fa;
+    color: #e2e8f0;
+}
+
+.chat-message.buyer {
+    background: rgba(168, 85, 247, 0.2);
+    border-left: 3px solid #a855f7;
+    color: #e2e8f0;
+    margin-left: auto;
+}
+
+.chat-message p {
+    margin: 0;
+}
+
+.chat-message small {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.chat-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input-group input {
+    flex: 1;
+}
+
+.chat-input-group input::placeholder {
+    color: #64748b;
+}
+
+/* BUYER ORDERS PAGE */
 .buyer-orders-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
 }
 
-.order-card {
+.buyer-order-card {
     background: rgba(30, 41, 59, 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -478,75 +902,15 @@ body {
     transition: all 0.3s ease;
 }
 
-.order-card:hover {
+.buyer-order-card:hover {
     border-color: rgba(96, 165, 250, 0.5);
     transform: translateY(-4px);
     box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
 }
 
-.order-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.order-card-body {
-    padding: 1rem;
-}
-
-.order-card-body p {
-    margin-bottom: 0.5rem;
-    color: #cbd5e1;
-}
-
-.order-card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(96, 165, 250, 0.05);
-}
-
 .order-number {
     color: #60a5fa;
     font-weight: 600;
-}
-
-.price {
-    font-weight: bold;
-    color: #60a5fa;
-    font-size: 1.1rem;
-}
-
-.status-badge {
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.status-checking { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
-.status-queued { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-.status-working { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
-.status-completed { background: rgba(74, 222, 128, 0.2); color: #86efac; }
-
-.payment-status {
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-}
-
-.payment-status.verified {
-    background: rgba(74, 222, 128, 0.2);
-    color: #86efac;
-}
-
-.payment-status.pending {
-    background: rgba(249, 115, 22, 0.2);
-    color: #fb923c;
 }
 
 /* STATUS TIMELINE */
@@ -633,70 +997,24 @@ body {
     margin-bottom: 0.3rem;
 }
 
-/* CHAT */
-.chat-section {
-    margin-top: 2rem;
-}
-
-.chat-section h4 {
-    color: #e2e8f0;
-    margin-bottom: 1rem;
-}
-
-.chat-messages {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    border-radius: 8px;
-    height: 200px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.chat-message {
-    margin-bottom: 1rem;
-    padding: 0.8rem;
-    border-radius: 8px;
-    max-width: 80%;
-}
-
-.chat-message.seller {
-    background: rgba(96, 165, 250, 0.2);
-    border-left: 3px solid #60a5fa;
-    color: #e2e8f0;
-}
-
-.chat-message.buyer {
-    background: rgba(168, 85, 247, 0.2);
-    border-left: 3px solid #a855f7;
-    color: #e2e8f0;
-    margin-left: auto;
-}
-
-.chat-message p {
-    margin: 0;
-}
-
-.chat-message small {
-    color: #94a3b8;
-    font-size: 0.75rem;
-}
-
-.chat-input-group {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.chat-input-group input {
-    flex: 1;
-}
-
-.chat-input-group input::placeholder {
-    color: #64748b;
-}
-
 /* RESPONSIVE */
 @media (max-width: 768px) {
+    .seller-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+    }
+
+    .seller-main {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .profile-card,
     .about-seller-card {
         grid-template-columns: 1fr;
     }
@@ -705,7 +1023,8 @@ body {
         flex-direction: column;
     }
 
-    .seller-stats {
+    .seller-stats,
+    .status-buttons {
         flex-direction: column;
     }
 
@@ -716,5 +1035,15 @@ body {
     .modal-content {
         width: 95%;
         margin: 10% auto;
+    }
+
+    .seller-sidebar nav {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .nav-item {
+        flex: 1;
+        justify-content: center;
     }
 }
