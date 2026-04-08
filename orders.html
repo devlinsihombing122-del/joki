@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Pesanan - Pascal Guru</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="buyer-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Pascal Guru</h1>
+            </div>
+            <nav class="header-nav">
+                <a href="index.html" class="btn-secondary">← Kembali</a>
+                <button id="logout-btn" class="btn-logout">Keluar</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Pesanan Saya</h2>
+        
+        <div id="orders-container" class="buyer-orders-list"></div>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div id="order-detail-modal" class="modal">
+        <div class="modal-content order-detail-modal">
+            <span class="close">&times;</span>
+
+            <div class="order-detail">
+                <div class="detail-header">
+                    <h3>Pesanan <span id="detail-order-id"></span></h3>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Detail Pesanan</h4>
+                    <p><strong>Jenis Jasa:</strong> <span id="detail-service-type"></span></p>
+                    <p><strong>Deskripsi:</strong> <span id="detail-service-desc"></span></p>
+                    <p><strong>Durasi Pengerjaan:</strong> <span id="detail-duration"></span> Hari</p>
+                    <p><strong>Nominal:</strong> <span id="detail-price"></span></p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Status Pengerjaan</h4>
+                    <div class="status-timeline">
+                        <div class="status-step">
+                            <span class="step-number">1</span>
+                            <span class="step-label">Pengecekan</span>
+                        </div>
+                        <div class="status-step">
+                            <span class="step-number">2</span>
+                            <span class="step-label">Antrian</span>
+                        </div>
+                        <div class="status-step">
+                            <span class="step-number">3</span>
+                            <span class="step-label">Dikerjakan</span>
+                        </div>
+                        <div class="status-step">
+                            <span class="step-number">4</span>
+                            <span class="step-label">Selesai</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>Status Saat Ini:</strong> <span id="detail-current-status"></span></p>
+                    <p id="detail-queue-info" style="display: none;"><strong>Nomor Antrian:</strong> <span id="detail-queue-number"></span></p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Tentang Penjual</h4>
+                    <div class="seller-info-mini">
+                        <div class="seller-avatar">📸</div>
+                        <div class="seller-details">
+                            <h5>Pascal</h5>
+                            <p id="detail-seller-about"></p>
+                            <p><strong>Telepon:</strong> 62 851-5688-4937</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Pesan Dengan Penjual</h4>
+                    <div id="detail-chat-messages" class="chat-messages"></div>
+                    <div class="chat-input-group">
+                        <input type="text" id="detail-chat-input" placeholder="Ketik pesan...">
+                        <button class="btn-secondary" onclick="sendBuyerMessage()">Kirim</button>
+                    </div>
+                </div>
+
+                <div class="detail-section" id="result-section" style="display: none;">
+                    <h4>Hasil Pekerjaan</h4>
+                    <div id="detail-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="orders.js"></script>
+</body>
+</html>
